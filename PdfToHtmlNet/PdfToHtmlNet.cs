@@ -9,11 +9,11 @@ namespace PdfToHtmlNet
     {
         protected override string ExecutableExtenstion { get; set; } = ".exe";
         protected override string ExecutableName { get; set; } = "PdfToHtmlNet";
-        protected override string ExecutableEmbeddedContainerName { get; set; } = "Resources.PdfToHtmlPy.exe";
+        protected override string ExecutableEmbeddedObjectName { get; set; } = "Resources.PdfToHtmlPy.exe";
 
         public void Convert(string pdfPath, string htmlPath, int pageId = 0)
         {
-            InvokeExecutable(out string log, pdfPath, htmlPath, pageId.ToString());
+            InvokeExecutable(out string log, pdfPath, htmlPath, pageId);
             XDocument xdoc = new XDocument();
             try
             {

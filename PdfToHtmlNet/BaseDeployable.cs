@@ -12,9 +12,9 @@ namespace BaseDeployableNamespace
     {
         protected bool isExecutableDeployed;
         protected string executableDirectory;
-        protected virtual string ExecutableExtenstion { get; set; } = ".exe";
+        protected virtual string ExecutableExtenstion { get; set; }
         protected virtual string ExecutableName { get; set; }
-        protected virtual string ExecutableEmbeddedContainerName { get; set; }
+        protected virtual string ExecutableEmbeddedObjectName { get; set; }
         public string ExecutableDirectory
         {
             get => string.IsNullOrWhiteSpace(executableDirectory) ? Path.Combine(Path.GetTempPath(), ExecutableName) : executableDirectory;
@@ -25,13 +25,14 @@ namespace BaseDeployableNamespace
             }
         }
         private string ExecutableNameWithVersion => string.Concat(ExecutableName, "_", Assembly.GetExecutingAssembly().GetName().Version.ToString());
-        protected static string BuildCommandLineArgs(params string[] args)
+        protected string ExecutableFullPath => Path.Combine(ExecutableDirectory, $"{ExecutableNameWithVersion}{ExecutableExtenstion}");
+        protected static string BuildCommandLineArgs(params object[] args)
         {
             StringBuilder sb = new StringBuilder();
-            foreach (string arg in args)
+            foreach (object arg in args)
             {
                 sb.Append("\"\"");
-                sb.Append(arg.Replace("\"", "\\\""));
+                sb.Append(arg.ToString().Replace("\"", "\\\""));
                 sb.Append("\"\" ");
             }
             if (sb.Length > 0)
@@ -53,47 +54,38 @@ namespace BaseDeployableNamespace
             }
         }
 
-        protected string ExecutableFullPath => Path.Combine(ExecutableDirectory, $"{ExecutableNameWithVersion}{ExecutableExtenstion}");
-
         protected void DeployExecutable()
         {
             if (isExecutableDeployed)
                 return;
-            var executableFullPath = ExecutableFullPath;
             Directory.CreateDirectory(ExecutableDirectory);
             Debug.Print("Executable folder:");
             Debug.Print(ExecutableDirectory);
             Directory.GetFiles(ExecutableDirectory)
-                .Where(r => Regex.IsMatch(Path.GetFileName(r), $@"{ExecutableName}_\d\.\d\.\d\.\d\{ExecutableExtenstion}") & !(r == executableFullPath))
+                .Where(r => Regex.IsMatch(Path.GetFileName(r), $@"{ExecutableName}_\d\.\d\.\d\.\d\{ExecutableExtenstion}") & !(r == ExecutableFullPath))
                 .ToList()
                 .ForEach(r => File.Delete(r));
-            byte[] bytea = GetBytesFromEmbeddedObject(ExecutableEmbeddedContainerName);
-            var executableBinary = new Binary(bytea);
-            if (File.Exists(executableFullPath))
+            byte[] bytea = GetBytesFromEmbeddedObject(ExecutableEmbeddedObjectName);
+            Binary packageBinary = new Binary(bytea);
+            if (File.Exists(ExecutableFullPath))
             {
                 Binary existingBinary;
-                using (FileStream fs = new FileStream(executableFullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                using (FileStream fs = new FileStream(ExecutableFullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 using (MemoryStream ms = new MemoryStream())
                 {
                     fs.CopyTo(ms);
                     existingBinary = new Binary(ms.ToArray());
                 }
-                if (!executableBinary.Equals(existingBinary))
-                {
-                    File.Delete(executableFullPath);
-                }
+                if (!packageBinary.Equals(existingBinary))
+                    File.Delete(ExecutableFullPath);
             }
-            if (!File.Exists(executableFullPath))
-            {
-                using (var fs = new FileStream(executableFullPath, FileMode.CreateNew, FileAccess.Write))
-                {
-                    fs.Write(executableBinary.ToArray(), 0, executableBinary.ToArray().Length);
-                }
-            }
+            if (!File.Exists(ExecutableFullPath))
+                using (var fs = new FileStream(ExecutableFullPath, FileMode.CreateNew, FileAccess.Write))
+                    fs.Write(packageBinary.ToArray(), 0, packageBinary.ToArray().Length);
             isExecutableDeployed = true;
         }
 
-        protected void InvokeExecutable(out string log, params string[] args)
+        protected void InvokeExecutable(out string log, params object[] args)
         {
             DeployExecutable();
             log = string.Empty;
@@ -110,9 +102,7 @@ namespace BaseDeployableNamespace
             };
             proc.Start();
             while (!proc.StandardOutput.EndOfStream)
-            {
                 log = proc.StandardOutput.ReadToEnd();
-            }
         }
     }
 }
