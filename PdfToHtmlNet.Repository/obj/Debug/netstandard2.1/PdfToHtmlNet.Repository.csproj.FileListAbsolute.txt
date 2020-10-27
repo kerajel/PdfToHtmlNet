@@ -1,0 +1,9 @@
+D:\Documents\GitHub\sater\PdfToHtmlNet\PdfToHtmlNet.Repository\obj\Debug\netstandard2.1\PdfToHtmlNet.Repository.csprojAssemblyReference.cache
+D:\Documents\GitHub\sater\PdfToHtmlNet\PdfToHtmlNet.Repository\obj\Debug\netstandard2.1\PdfToHtmlNet.Repository.AssemblyInfoInputs.cache
+D:\Documents\GitHub\sater\PdfToHtmlNet\PdfToHtmlNet.Repository\obj\Debug\netstandard2.1\PdfToHtmlNet.Repository.AssemblyInfo.cs
+D:\Documents\GitHub\sater\PdfToHtmlNet\PdfToHtmlNet.Repository\obj\Debug\netstandard2.1\PdfToHtmlNet.Repository.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\sater\PdfToHtmlNet\PdfToHtmlNet.Repository\bin\Debug\netstandard2.1\PdfToHtmlNet.Repository.deps.json
+D:\Documents\GitHub\sater\PdfToHtmlNet\PdfToHtmlNet.Repository\bin\Debug\netstandard2.1\PdfToHtmlNet.Repository.dll
+D:\Documents\GitHub\sater\PdfToHtmlNet\PdfToHtmlNet.Repository\bin\Debug\netstandard2.1\PdfToHtmlNet.Repository.pdb
+D:\Documents\GitHub\sater\PdfToHtmlNet\PdfToHtmlNet.Repository\obj\Debug\netstandard2.1\PdfToHtmlNet.Repository.dll
+D:\Documents\GitHub\sater\PdfToHtmlNet\PdfToHtmlNet.Repository\obj\Debug\netstandard2.1\PdfToHtmlNet.Repository.pdb
