@@ -18,3 +18,5 @@ c.ExecutableDirectory = "directory path";
 
 If no directory is provided, then current user's temp folder is used. Python executable has all the required dependencies within itself, so there is no need to install any pyenvs.
 Source code of the executable is provided in this repository aswell.
+
+The library does not overwrite the executable each time it is called. Instead it verifies its binary content and updates it only if a newer version is present.
