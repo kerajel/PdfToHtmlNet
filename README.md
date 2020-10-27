@@ -1,8 +1,6 @@
 # PdfToHtmlNet
 A free opensource library for converting .pdf into .html in .net
 
-I was surprised not to find a single free library to convert .pdf to .html. So I made one myself.
-
 Usage:
 ```
 string sourcePdf = "path to the target .pdf";
