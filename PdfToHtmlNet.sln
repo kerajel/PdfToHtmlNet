@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfToHtmlNet_472", "PDF to HTML .net\PdfToHtmlNet_472.csproj", "{2D764137-5694-4D35-952A-2E066522CCAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{AD9C415D-6AE4-4D84-8CEC-676A5CF72381}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D764137-5694-4D35-952A-2E066522CCAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D764137-5694-4D35-952A-2E066522CCAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D764137-5694-4D35-952A-2E066522CCAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D764137-5694-4D35-952A-2E066522CCAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD9C415D-6AE4-4D84-8CEC-676A5CF72381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD9C415D-6AE4-4D84-8CEC-676A5CF72381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD9C415D-6AE4-4D84-8CEC-676A5CF72381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD9C415D-6AE4-4D84-8CEC-676A5CF72381}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC5B82E2-1610-4D7B-B000-15E056039EE0}
+	EndGlobalSection
+EndGlobal
