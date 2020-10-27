@@ -1,5 +1,5 @@
 # PdfToHtmlNet
-A free opensource library for converting .pdf into .html in .NET
+A free opensource library for converting .PDF into .HTML in .NET
 
 Usage:
 ```
