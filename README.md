@@ -5,7 +5,7 @@ Usage:
 ```
 string sourcePdf = "path to the source .pdf";
 string targetHtml = "path to the resulting html";
-int pageID = 0; //id of the page to be converted. This parameter is 0 by default and targets all pages in the document
+int pageID = 0; //id of the page to be converted. This parameter is 0 by default which targets all pages in the document
 PdfToHtmlNet.Converter c = new PdfToHtmlNet.Converter();
 c.Convert(sourcePdf, targetHtml, pageId);
 ```
