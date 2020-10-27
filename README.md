@@ -11,7 +11,7 @@ c.Convert(sourcePdf, targetHtml, pageId);
 ```
 
 
-The actual converting is done by a python executable which is deployed to your PC. You can specify the directory in which it would be stored before calling the 'Convert' method:
+The actual converting is done by a python executable which is deployed to the executing machine. You can specify the directory in which it would be stored before calling the 'Convert' method:
 ```
 c.ExecutableDirectory = "directory path";
 ```
