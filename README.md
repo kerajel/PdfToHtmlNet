@@ -14,7 +14,9 @@ c.Convert(sourcePdf, targetHtml, pageId);
 
 
 The actual converting is done by a python executable which is deployed to your PC. You can specify the directory in which it would be stored before calling 'Convert' method:
+```
 c.ExecutableDirectory = "directory path";
+```
 
 If no directory is provided, then current user's temp folder is used. Python executable has all the required dependencies within itself, so there is no need to install any pyenvs.
 Source code of the executable is provided in this repository aswell.
