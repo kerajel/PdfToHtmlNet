@@ -11,16 +11,16 @@ namespace BaseDeployableNamespace
     public abstract class BaseDeployable
     {
         protected bool isExecutableDeployed;
-        protected string executableFolder;
+        protected string executableDirectory;
         protected virtual string ExecutableExtenstion { get; set; } = ".exe";
         protected virtual string ExecutableName { get; set; }
         protected virtual string ExecutableEmbeddedContainerName { get; set; }
-        public string ExecutableFolder
+        public string ExecutableDirectory
         {
-            get => string.IsNullOrWhiteSpace(executableFolder) ? Path.Combine(Path.GetTempPath(), ExecutableName) : executableFolder;
+            get => string.IsNullOrWhiteSpace(executableDirectory) ? Path.Combine(Path.GetTempPath(), ExecutableName) : executableDirectory;
             set
             {
-                executableFolder = value;
+                executableDirectory = value;
                 isExecutableDeployed = false;
             }
         }
@@ -53,17 +53,17 @@ namespace BaseDeployableNamespace
             }
         }
 
-        protected string ExecutableFullPath => Path.Combine(ExecutableFolder, $"{ExecutableNameWithVersion}{ExecutableExtenstion}");
+        protected string ExecutableFullPath => Path.Combine(ExecutableDirectory, $"{ExecutableNameWithVersion}{ExecutableExtenstion}");
 
         protected void DeployExecutable()
         {
             if (isExecutableDeployed)
                 return;
             var executableFullPath = ExecutableFullPath;
-            Directory.CreateDirectory(ExecutableFolder);
+            Directory.CreateDirectory(ExecutableDirectory);
             Debug.Print("Executable folder:");
-            Debug.Print(ExecutableFolder);
-            Directory.GetFiles(ExecutableFolder)
+            Debug.Print(ExecutableDirectory);
+            Directory.GetFiles(ExecutableDirectory)
                 .Where(r => Regex.IsMatch(Path.GetFileName(r), $@"{ExecutableName}_\d\.\d\.\d\.\d\{ExecutableExtenstion}") & !(r == executableFullPath))
                 .ToList()
                 .ForEach(r => File.Delete(r));

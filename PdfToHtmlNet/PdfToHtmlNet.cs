@@ -5,7 +5,7 @@ using BaseDeployableNamespace;
 
 namespace PdfToHtmlNet
 {
-    public class PdfToHtmlNet : BaseDeployable
+    public class Converter : BaseDeployable
     {
         protected override string ExecutableExtenstion { get; set; } = ".exe";
         protected override string ExecutableName { get; set; } = "PdfToHtmlNet";

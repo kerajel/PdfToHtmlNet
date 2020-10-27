@@ -14,8 +14,8 @@ namespace UnitTests
             int pageId = 0;
             if (File.Exists(targetHtml))
                 File.Delete(targetHtml);
-            var p = new PdfToHtmlNet.PdfToHtmlNet();
-            p.Convert(sourcePdf, targetHtml, pageId);
+            PdfToHtmlNet.Converter c = new PdfToHtmlNet.Converter();
+            c.Convert(sourcePdf, targetHtml, pageId);
             var htmlExists = File.Exists(targetHtml);
             Assert.IsTrue(htmlExists);
         }
