@@ -14,7 +14,7 @@ namespace PdfToHtmlNet
         public void Convert(string pdfPath, string htmlPath, int pageId = 0)
         {
             InvokeExecutable(out string log, pdfPath, htmlPath, pageId);
-            XDocument xdoc = new XDocument();
+            XDocument xdoc;
             try
             {
                 xdoc = XDocument.Parse(log);
