@@ -43,9 +43,6 @@ try:
     pdf_path = sys.argv[1]
     html_path = sys.argv[2]
     page_id = sys.argv[3]
-    pdf_path = r"D:\Documents\GitHub\PDF to HTML .net\PyScript\ZSN.0404-4740-TK1-0023.pdf"
-    html_path = r"D:\Documents\GitHub\PDF to HTML .net\PyScript\ZSN.0404-4740-TK1-0023.html"
-    page_id = 0
     convert_pdf_to_html(pdf_path, html_path, page_id)
     log["OperationStatus"] = "Completed"
     log["ErrorMessage"] = ""
