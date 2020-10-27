@@ -6,13 +6,9 @@ I was surprised not to find a single free library to convert .pdf to .html. So I
 Usage:
 ```
 string sourcePdf = "path to the target .pdf";
-
 string targetHtml = "path to the resulting html";
-
 int pageID = 0; //id of the page to be converted. This parameter is 0 by default and targets all pages in the document
-
 PdfToHtmlNet.Converter c = new PdfToHtmlNet.Converter();
-
 c.Convert(sourcePdf, targetHtml, pageId);
 ```
 
