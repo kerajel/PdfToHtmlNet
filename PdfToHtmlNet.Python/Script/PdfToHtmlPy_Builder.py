@@ -1,10 +1,10 @@
-#This builts executable from the PdfToHtmlPy.py
+#This builds executable from the PdfToHtmlPy.py
 import subprocess
 from pathlib import Path
 
 pyScriptPath = str(Path.cwd()) + '\\PdfToHtmlPy.py'
-outputDir = str(Path(f"..\\Executable").resolve())
-cmd = f'pyinstaller --noconfirm --onefile --console "{pyScriptPath}" --distpath "{outputDir}"'
+executablePath = str(Path(f"..\\Executable").resolve())
+cmd = f'pyinstaller --noconfirm --onefile --console --name PdfToHtmlNet.exe "{pyScriptPath}" --distpath "{executablePath}"'
 out = subprocess.Popen(cmd, 
            stdout=subprocess.PIPE, 
            stderr=subprocess.STDOUT)
