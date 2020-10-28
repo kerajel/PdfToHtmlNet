@@ -1,6 +1,8 @@
 # PdfToHtmlNet
 Free opensource library for converting .PDF into .HTML in .NET
 
+https://www.nuget.org/packages/PdfToHtmlNet/
+
 Usage:
 ```
 string sourcePdf = "path to the source .pdf";
