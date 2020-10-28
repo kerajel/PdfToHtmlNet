@@ -1,4 +1,4 @@
-#This builts executable from the PdfToHtmlPy.py
+#This builds executable from the PdfToHtmlPy.py
 import subprocess
 from pathlib import Path
 
