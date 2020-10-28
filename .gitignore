@@ -3,7 +3,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# PdfToHtml-specific
 PdfToHtmlNet.Tests/TestData
+Executable
+build/
+*.spec
 __pycache__/
 
 # User-specific files
