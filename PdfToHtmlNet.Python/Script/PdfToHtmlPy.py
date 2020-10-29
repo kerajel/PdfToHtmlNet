@@ -11,35 +11,33 @@ def convert_pdf_to_html(pdf_path, html_path, page_id, encoding):
     page_id = int(page_id)
     rsrcmgr = PDFResourceManager()
     retstr = BytesIO()
-    codec = encoding
     laparams = LAParams()
-    device = HTMLConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
-    fp = open(pdf_path, 'rb')
-    interpreter = PDFPageInterpreter(rsrcmgr, device)
-    password = ""
-    maxpages = 0  # is for all
-    caching = True
-    pagenos = set()
-    for pageNumber, page in enumerate(PDFPage.get_pages(fp, pagenos, maxpages=maxpages, password=password, caching=caching, check_extractable=True)):
-        if page_id == 0:
-            interpreter.process_page(page)
-            page_found = True
-        else:
-            if pageNumber == page_id - 1:
+    device = HTMLConverter(rsrcmgr, retstr, codec=encoding, laparams=laparams)
+    with open(pdf_path, 'rb') as fp:
+        interpreter = PDFPageInterpreter(rsrcmgr, device)
+        for pageNumber, page in enumerate(PDFPage.get_pages(fp, set(),
+                                                            maxpages=0,  # 0 is for all
+                                                            password='',
+                                                            caching=True,
+                                                            check_extractable=True)):
+            if page_id == 0:
                 interpreter.process_page(page)
                 page_found = True
-    fp.close()
+            else:
+                if pageNumber == page_id - 1:
+                    interpreter.process_page(page)
+                    page_found = True
     device.close()
-    str = retstr.getvalue()
+    html_string = retstr.getvalue()
     retstr.close()
     if page_found == False:
         raise ValueError(f'Page {page_id} was not found')
     with open(html_path, "wb") as Html_file:
-        Html_file.write(str)
+        Html_file.write(html_string)
 
-log = {}
 
 try:
+    log = {}
     pdf_path = sys.argv[1]
     html_path = sys.argv[2]
     page_id = sys.argv[3]
