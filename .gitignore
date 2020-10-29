@@ -9,6 +9,7 @@ Executable
 build/
 *.spec
 __pycache__/
+.vscode/
 
 # User-specific files
 *.rsuser
