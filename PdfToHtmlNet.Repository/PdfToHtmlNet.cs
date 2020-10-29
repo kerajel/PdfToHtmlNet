@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 using BaseDeployableNamespace;
 
@@ -11,9 +12,11 @@ namespace PdfToHtmlNet
         protected override string ExecutableName { get; set; } = "PdfToHtmlNet";
         protected override string ExecutableEmbeddedResourceName { get; set; } = "PdfToHtmlNet.Repository.PdfToHtmlNet.exe";
 
+        public Encoding Encoding { get; set; } = Encoding.UTF8;
+
         public void Convert(string pdfPath, string htmlPath, int pageId = 0)
         {
-            InvokeExecutable(out string log, pdfPath, htmlPath, pageId);
+            InvokeExecutable(out string log, pdfPath, htmlPath, pageId, Encoding.BodyName);
             XDocument xdoc;
             try
             {

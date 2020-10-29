@@ -6,12 +6,12 @@ from dicttoxml import dicttoxml
 from io import BytesIO
 import sys
 
-def convert_pdf_to_html(pdf_path, html_path, page_id):
+def convert_pdf_to_html(pdf_path, html_path, page_id, encoding):
     page_found = False
     page_id = int(page_id)
     rsrcmgr = PDFResourceManager()
     retstr = BytesIO()
-    codec = 'utf-8'
+    codec = encoding
     laparams = LAParams()
     device = HTMLConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
     fp = open(pdf_path, 'rb')
@@ -43,7 +43,8 @@ try:
     pdf_path = sys.argv[1]
     html_path = sys.argv[2]
     page_id = sys.argv[3]
-    convert_pdf_to_html(pdf_path, html_path, page_id)
+    encoding = sys.argv[4]
+    convert_pdf_to_html(pdf_path, html_path, page_id, encoding)
     log["OperationStatus"] = "Completed"
     log["ErrorMessage"] = ""
 except Exception as e:

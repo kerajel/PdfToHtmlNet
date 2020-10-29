@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using System.Xml.Linq;
+using System.Text;
 using HtmlAgilityPack;
 using Xunit;
 
@@ -18,6 +18,7 @@ namespace PdfToHtmlNet.Tests
             if (File.Exists(targetHtml))
                 File.Delete(targetHtml);
             PdfToHtmlNet.Converter c = new PdfToHtmlNet.Converter();
+            c.Encoding = Encoding.UTF8;
             c.Convert(sourcePdf, targetHtml, pageId);
             Exception excep = null;
             try

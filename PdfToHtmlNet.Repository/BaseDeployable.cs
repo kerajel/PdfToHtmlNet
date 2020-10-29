@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Reflection;
 
 namespace BaseDeployableNamespace
 {
@@ -14,7 +15,7 @@ namespace BaseDeployableNamespace
         protected virtual string ExecutableEmbeddedResourceName { get; set; }
         public string ExecutableDirectory
         {
-            get => string.IsNullOrWhiteSpace(executableDirectory) ? Path.Combine(Path.GetTempPath(), ExecutableName) : executableDirectory;
+            get => string.IsNullOrEmpty(executableDirectory) ? Path.Combine(Path.GetTempPath(), ExecutableName) : executableDirectory;
             set
             {
                 executableDirectory = value;
@@ -32,13 +33,11 @@ namespace BaseDeployableNamespace
                 sb.Append(arg.ToString().Replace("\"", "\\\""));
                 sb.Append("\"\" ");
             }
-            if (sb.Length > 0)
-                sb = sb.Remove(sb.Length - 1, 1);
-            return sb.ToString();
+            return sb.Length > 0 ? sb.Remove(sb.Length - 1, 1).ToString() : string.Empty;
         }
         private static byte[] ExtractResource(string resourceName)
         {
-            System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
+            Assembly a = Assembly.GetExecutingAssembly();
             using (Stream resFilestream = a.GetManifestResourceStream(resourceName))
             {
                 if (resFilestream == null) return null;
@@ -53,6 +52,8 @@ namespace BaseDeployableNamespace
             if (isExecutableDeployed)
                 return;
             Directory.CreateDirectory(ExecutableDirectory);
+            Debug.Print("Executable dir:");
+            Debug.Print(ExecutableDirectory);
             byte[] bytea = ExtractResource(ExecutableEmbeddedResourceName);
             Binary packageBinary = new Binary(bytea);
             if (File.Exists(ExecutableFullPath))
@@ -77,7 +78,7 @@ namespace BaseDeployableNamespace
         {
             DeployExecutable();
             log = string.Empty;
-            var proc = new Process
+            Process proc = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
@@ -91,6 +92,8 @@ namespace BaseDeployableNamespace
             proc.Start();
             while (!proc.StandardOutput.EndOfStream)
                 log = proc.StandardOutput.ReadToEnd();
+                
+            var b = Encoding.UTF8;
         }
     }
 }
