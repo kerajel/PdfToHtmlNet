@@ -1,5 +1,5 @@
 # PdfToHtmlNet
-Free opensource library for converting .PDF into .HTML in .NET
+Free opensource library for converting .PDF to .HTML in .NET
 
 https://www.nuget.org/packages/PdfToHtmlNet/
 

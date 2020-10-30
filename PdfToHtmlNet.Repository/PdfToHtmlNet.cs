@@ -16,7 +16,7 @@ namespace PdfToHtmlNet
         public Encoding Encoding { get; set; } = Encoding.UTF8;
 
         public void ConvertToFile(string pdfPath, string htmlPath, int pageID = 0) => ProcessPipe(pdfPath, htmlPath, pageID);
-        public void ConvertToFile(string pdfPath, string htmlPath, IEnumerable<int> pageIDs) => ProcessPipe(pdfPath, htmlPath, string.Join(',', pageIDs));
+        public void ConvertToFile(string pdfPath, string htmlPath, IEnumerable<int> pageIDs) => ProcessPipe(pdfPath, htmlPath, string.Join(",", pageIDs));
 
         private void ProcessPipe(string pdfPath, string htmlPath, object pageID)
         {
