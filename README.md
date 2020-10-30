@@ -22,6 +22,12 @@ c.Convert(sourcePdf, targetHtml, pageIDs);
 ```
 Index of pages is 1-based
 
+It is possible to specify Converter's encoding:
+```
+c.Encoding = Encoding.UTF32;
+```
+UTF8 is used by default.
+
 The actual converting is done by a python executable which is deployed to the executing machine. You can specify the directory in which it will be stored before calling the 'Convert' method:
 ```
 c.ExecutableDirectory = "directory path";
