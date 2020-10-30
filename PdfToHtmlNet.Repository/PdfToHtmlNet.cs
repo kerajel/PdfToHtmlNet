@@ -15,8 +15,8 @@ namespace PdfToHtmlNet
 
         public Encoding Encoding { get; set; } = Encoding.UTF8;
 
-        public void Convert(string pdfPath, string htmlPath, int pageID = 0) => ProcessPipe(pdfPath, htmlPath, pageID);
-        public void Convert(string pdfPath, string htmlPath, IEnumerable<int> pageIDs) => ProcessPipe(pdfPath, htmlPath, string.Join(',', pageIDs));
+        public void ConvertToFile(string pdfPath, string htmlPath, int pageID = 0) => ProcessPipe(pdfPath, htmlPath, pageID);
+        public void ConvertToFile(string pdfPath, string htmlPath, IEnumerable<int> pageIDs) => ProcessPipe(pdfPath, htmlPath, string.Join(',', pageIDs));
 
         private void ProcessPipe(string pdfPath, string htmlPath, object pageID)
         {
@@ -41,7 +41,8 @@ namespace PdfToHtmlNet
             }
             if (xdoc.Root.Element("OperationStatus").Value == "Faulted")
             {
-                string exceptionDetails = string.Concat("Python executable failed with exception:", Environment.NewLine, xdoc.Root.Element("ErrorMessage").Value);
+                string exceptionDetails = string.Concat("Python executable failed with exception:",
+                 Environment.NewLine, xdoc.Root.Element("ErrorMessage").Value);
                 throw new Exception(exceptionDetails);
             }
         }

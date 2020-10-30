@@ -52,7 +52,7 @@ namespace BaseDeployableNamespace
             if (isExecutableDeployed)
                 return;
             Directory.CreateDirectory(ExecutableDirectory);
-            Debug.Print("Executable dir:");
+            Debug.Print("PdfToHtmlNet executable dir:");
             Debug.Print(ExecutableDirectory);
             byte[] bytea = ExtractResource(ExecutableEmbeddedResourceName);
             Binary packageBinary = new Binary(bytea);

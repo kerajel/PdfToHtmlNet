@@ -13,14 +13,15 @@ namespace PdfToHtmlNet.Tests
     {
         static string sourcePdf = @"..\..\..\TestData\0055-CPC-4.1.8.20.201-AK1.PL-0002_01_ER.pdf";
         static string targetHtml = @"..\..\..\TestData\0055-CPC-4.1.8.20.201-AK1.PL-0002_01_ER.html";
+
         [Fact]
         public void Test_1()
         {
-            var pageID = new int[] { 4 };
+            var pageID = new int[] { 2 };
             if (File.Exists(targetHtml)) File.Delete(targetHtml);
             PdfToHtmlNet.Converter c = new PdfToHtmlNet.Converter();
             c.Encoding = Encoding.UTF8;
-            c.Convert(sourcePdf, targetHtml, pageID);
+            c.ConvertToFile(sourcePdf, targetHtml, pageID);
             Exception excep = null;
             try
             {
