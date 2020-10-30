@@ -7,9 +7,16 @@ Usage:
 ```
 string sourcePdf = "path to the source .pdf";
 string targetHtml = "path to the resulting html";
-int pageID = 0; //id of the page to be converted. This parameter is 0 by default which targets all pages in the document
 PdfToHtmlNet.Converter c = new PdfToHtmlNet.Converter();
-c.Convert(sourcePdf, targetHtml, pageId);
+c.Convert(sourcePdf, targetHtml);
+//by default all document pages are converted
+//if you want to specify a single page:
+int pageID = 1;
+c.Convert(sourcePdf, targetHtml, pageID);
+//if you want to specify multiple pages:
+int[] pageIDs = new int[]{ 1, 3 };
+c.Convert(sourcePdf, targetHtml, pageIDs);
+//index of pages is 1-based
 ```
 
 
