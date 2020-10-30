@@ -20,7 +20,7 @@ If you want to specify multiple pages:
 int[] pageIDs = new int[]{ 1, 3 };
 c.Convert(sourcePdf, targetHtml, pageIDs);
 ```
-Index of pages is 1-based
+Index of pages is 1-based.
 
 The actual converting is done by a python executable which is deployed to the executing machine. You can specify the directory in which it will be stored before calling the 'Convert' method:
 ```
