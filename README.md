@@ -8,21 +8,21 @@ Usage:
 string sourcePdf = "path to the source .pdf";
 string targetHtml = "path to the resulting html";
 PdfToHtmlNet.Converter c = new PdfToHtmlNet.Converter();
-c.Convert(sourcePdf, targetHtml);
+c.ConvertToFile(sourcePdf, targetHtml);
 ```
 By default all document pages are converted. If you want to specify a single page:
 ```
 int pageID = 1;
-c.Convert(sourcePdf, targetHtml, pageID);
+c.ConvertToFile(sourcePdf, targetHtml, pageID);
 ```
 If you want to specify multiple pages:
 ```
 int[] pageIDs = new int[]{ 1, 3 };
-c.Convert(sourcePdf, targetHtml, pageIDs);
+c.ConvertToFile(sourcePdf, targetHtml, pageIDs);
 ```
 Index of pages is 1-based.
 
-The actual converting is done by a python executable which is deployed to the executing machine. You can specify the directory in which it will be stored before calling the 'Convert' method:
+The actual converting is done by a python executable which is deployed to the executing machine. You can specify the directory in which it will be stored before calling the 'ConvertToFile' method:
 ```
 c.ExecutableDirectory = "directory path";
 ```
