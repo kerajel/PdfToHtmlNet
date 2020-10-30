@@ -74,10 +74,10 @@ namespace BaseDeployableNamespace
             isExecutableDeployed = true;
         }
 
-        protected void InvokeExecutable(out string log, params object[] args)
+        protected void InvokeExecutable(out string output, params object[] args)
         {
             DeployExecutable();
-            log = string.Empty;
+            output = string.Empty;
             Process proc = new Process
             {
                 StartInfo = new ProcessStartInfo
@@ -91,9 +91,7 @@ namespace BaseDeployableNamespace
             };
             proc.Start();
             while (!proc.StandardOutput.EndOfStream)
-                log = proc.StandardOutput.ReadToEnd();
-                
-            var b = Encoding.UTF8;
+                output = proc.StandardOutput.ReadToEnd();
         }
     }
 }

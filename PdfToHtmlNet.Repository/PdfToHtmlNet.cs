@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -14,13 +15,21 @@ namespace PdfToHtmlNet
 
         public Encoding Encoding { get; set; } = Encoding.UTF8;
 
-        public void Convert(string pdfPath, string htmlPath, int pageId = 0)
+        public void Convert(string pdfPath, string htmlPath, int pageID = 0) => ProcessPipe(pdfPath, htmlPath, pageID);
+        public void Convert(string pdfPath, string htmlPath, IEnumerable<int> pageIDs) => ProcessPipe(pdfPath, htmlPath, string.Join(',', pageIDs));
+
+        private void ProcessPipe(string pdfPath, string htmlPath, object pageID)
         {
-            InvokeExecutable(out string log, pdfPath, htmlPath, pageId, Encoding.BodyName);
+            InvokeExecutable(out string output, pdfPath, htmlPath, pageID, Encoding.BodyName);
+            ParseExecutableOutput(output);
+        }
+
+        private static void ParseExecutableOutput(string output)
+        {
             XDocument xdoc;
             try
             {
-                xdoc = XDocument.Parse(log);
+                xdoc = XDocument.Parse(output);
                 var parsedCorrectly = xdoc.Root.Elements()
                     .All(r => r.Name == "OperationStatus" || r.Name == "ErrorMessage");
                 if (!parsedCorrectly)
