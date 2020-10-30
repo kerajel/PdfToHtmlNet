@@ -9,14 +9,18 @@ string sourcePdf = "path to the source .pdf";
 string targetHtml = "path to the resulting html";
 PdfToHtmlNet.Converter c = new PdfToHtmlNet.Converter();
 c.Convert(sourcePdf, targetHtml);
-//by default all document pages are converted
-//if you want to specify a single page:
+```
+By default all document pages are converted. If you want to specify a single page:
+```
 int pageID = 1;
 c.Convert(sourcePdf, targetHtml, pageID);
-//if you want to specify multiple pages:
+```
+If you want to specify multiple pages:
+```
 int[] pageIDs = new int[]{ 1, 3 };
 c.Convert(sourcePdf, targetHtml, pageIDs);
-//index of pages is 1-based
+```
+Index of pages is 1-based
 ```
 
 
