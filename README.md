@@ -6,7 +6,7 @@ https://www.nuget.org/packages/PdfToHtmlNet/
 Usage:
 ```
 string sourcePdf = "path to the source .pdf";
-string targetHtml = "path to the resulting html";
+string targetHtml = "path to the resulting .html";
 PdfToHtmlNet.Converter c = new PdfToHtmlNet.Converter();
 c.ConvertToFile(sourcePdf, targetHtml);
 ```
